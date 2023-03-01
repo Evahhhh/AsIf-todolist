@@ -1,26 +1,46 @@
 <template>
-  <header>
-    <img
-      alt="Vue logo"
-      class="logo"
-      src="@/assets/img/logo.png"
-      width="100"
-    />
-  </header>
-  <main>
-    <NewTask />
-  </main>
+  <body class="page">
+    <div class="sidebar">
+      <img
+        alt="Vue logo"
+        class="logo"
+        src="@/assets/img/logo2.png"
+        width="150"
+      />
+      <NewTask />
+    </div>
+    <div class="content">
+    </div>
+  </body>
 </template>
 
 <style scoped>
-header{
-  background-color: #34DA9F;
+.page{
   display: flex;
-  justify-content: center;
-  padding: 10px;
+}
+
+.sidebar{
+  background-color: #34DA9F;
+  flex-basis: 25%;
+  padding: 20px;
+  display : flex;
+  align-items: center;
+  flex-direction : column;
+  gap : 30px;
+}
+
+.content{
+  flex-basis: 75%;
+  padding: 20px;
 }
 </style>
 
-<script setup>
+<script>
 import NewTask from './components/NewTask.vue';
+
+export default {
+  components: {
+    NewTask,
+  },
+};
 </script>

@@ -1,3 +1,10 @@
 @import './base.css';
 @import './normalize.css';
 
+body{
+    overflow-y: scroll;
+}
+
+body::-webkit-scrollbar{
+    display: none;
+}
