@@ -3,23 +3,23 @@
         <h1>New Task</h1>
         <form id="newTask" class="newTask" action="">
             <section>
-                <label for="name">Name :</label><br>
+                <label for="name">Name :</label>
                 <input type="text" name="Nom de la tache" placeholder="Dishes" id="name" required/><br>
             </section>
             <section>
-                <label for="desc">Description :</label><br>
+                <label for="desc">Description :</label>
                 <input type="text" name="Description" placeholder="Dishes a very bad joke" id="desc" required/><br>
             </section>
             <section>
-                <label for="startDate">Beginning :</label><br>
+                <label for="startDate">Beginning :</label>
                 <input type="date" name="Date de début" placeholder="01/03/2023" id="startDate" required/><br>
             </section>
             <section>
-                <label for="endDate">End :</label><br>
+                <label for="endDate">End :</label>
                 <input type="date" name="Date de fin" placeholder="01/03/2023" id="endDate" required/><br>
             </section>
             <section>
-                <label for="state">Task State:</label><br>
+                <label for="state">Task State:</label>
                 <input list="states" name="state" id="state" required>
                 <datalist id="states">
                     <option value="To Do"></option>
@@ -28,7 +28,7 @@
                 </datalist><br>
             </section>
             <section>
-                <label for="prio">Priority :</label><br>
+                <label for="prio">Priority :</label>
                 <input list="priorities" name="priority" id="prio" required><br>
                 <datalist id="priorities">
                     <option value="High"></option>
@@ -37,7 +37,7 @@
                 </datalist>
             </section>
     
-            <button id="submitBtn" class="btn" type="button" name="send" @click="handleClick">Add Task</button><br>
+            <button id="submitBtn" class="btn" type="button" name="send" @click="handleClick">Add</button>
 
         </form>
 
@@ -50,26 +50,33 @@
     box-shadow : 5px 5px 21px 5px rgba(0,0,0,0.15);
     display: flex;
     flex-direction: column;
-    padding: 10px;
-    width : 300px;
+    width : 90%;
     border-radius : 5px;
+    padding : 20px;
 }
 
 section{
+    display : flex;
+    flex-direction : column;
     margin-top : 15px;
 }
 
 .btn{
-    margin-top : 15px;
     border-radius : 5px;
     color : black;
     background-color : white;
-    border-color: #34DA9F;
+    border: none;
     width : 125px;
-    padding : 5px;
-
-    margin: 15px auto 0;
+    padding : 10px 30px;
+    cursor : pointer;
+    margin: 10px auto 20px;
     display: block;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.btn:hover{
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 h1{
@@ -77,6 +84,14 @@ h1{
     margin-bottom : -10px;
     text-align: center;
 }
+
+input{
+    border : solid 1px #34DA9F;
+    border-radius : 5px;
+    padding : 5px;
+}
+
+
 </style>
 
 <script>

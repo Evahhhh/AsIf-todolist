@@ -1,8 +1,11 @@
 @import './base.css';
 @import './normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300&display=swap');
 
 body{
     overflow-y: scroll;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size : 17px;
 }
 
 body::-webkit-scrollbar{

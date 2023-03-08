@@ -2,7 +2,9 @@
     <app-accordion class="accordion no-select" >
         <template v-slot:title>
             <div  class="header">
-                {{ propTask ? propTask.name : "" }}
+                <div class="word-break">
+                    {{ propTask ? propTask.name : "" }}
+                </div>
                 <div class="toRight">
                     <State :propTask="propTask" />
                     <Priority :propTask="propTask" />
@@ -14,10 +16,16 @@
         </template>
 
         <template v-slot:content>
-            <div  class="content">
-                {{ propTask ? propTask.desc : "" }}
-                {{ propTask ? propTask.startDate : "" }}
-                {{ propTask ? propTask.endDate : "" }}
+            <div class="content word-break">
+                <p>
+                    Description : {{ propTask ? propTask.desc : "" }}
+                </p>
+                <p>
+                    Start date : {{ propTask ? propTask.startDate : "" }}
+                </p>
+                <p>
+                    End date : {{ propTask ? propTask.endDate : "" }}
+                </p>
 
             </div>
         </template>
@@ -47,9 +55,7 @@ export default {
   },
   methods:{
     removeTask(){
-        
         window.localStorage.removeItem(this.propTask.name);
-        console.log("click");
         location.reload();
     }
   }
@@ -58,6 +64,17 @@ export default {
 
 
 <style scoped>
+
+.content{
+    display : flex;
+    flex-direction : column;
+    gap : 5px;
+    padding :5px;
+}
+
+.word-break{
+    word-break: break-all;
+}
 
 .no-select{
     user-select: none;

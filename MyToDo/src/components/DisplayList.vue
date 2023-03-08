@@ -1,6 +1,6 @@
 <template>
 
-    <div v-if="getList().length > 0">   
+    <div class="list" v-if="getList().length > 0">   
         <Task v-for="item in getList()" :key="item.id" :propTask="item"/>
     </div>
     <div class="emptyPage" v-else>
@@ -60,10 +60,23 @@ export default {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding : 20px;
 }
 
 img{
     height : 400px;
+}
+
+/* Téléphone */
+@media (max-width: 480px) {
+    img{
+        height : 300px;
+    }
+
+    .list,
+    .emptyPage{
+        padding-bottom : 80px;
+    }
 }
 
 

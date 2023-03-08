@@ -1,4 +1,9 @@
 <template>
+
+  <div class="sort">
+      Hello world
+  </div>
+
 </template>
   
 <script>
@@ -42,6 +47,19 @@
   </script>
   
   <style scoped>
+  .sort{
+    display : flex;
+    background-color: white;
+    width: 100%;
+    padding : 20px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
+  }
   
+  @media (max-width: 481px){
+    .sort{
+      position: fixed;
+      bottom: 0;
+    }
+  }
   </style>
   
