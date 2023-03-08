@@ -11,6 +11,7 @@
     </div>
     <div class="content">
 
+      <Sort />
       <DisplayList />
 
     </div>
@@ -39,11 +40,13 @@
 </style>
 
 <script>
+import Sort from './components/Sort.vue';
 import NewTask from './components/NewTask.vue';
 import DisplayList from './components/DisplayList.vue';
 
 export default {
   components: {
+    Sort,
     NewTask,
     DisplayList,
   },

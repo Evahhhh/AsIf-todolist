@@ -3,11 +3,13 @@
         <template v-slot:title>
             <div  class="header">
                 {{ propTask ? propTask.name : "" }}
-                {{ propTask ? propTask.state : "" }}
-                {{ propTask ? propTask.prio : "" }}
-                <button @click="removeTask" class="removeBtn">
-                    <img src="../assets/icons/remove.png" alt="Trash" />
-                </button>
+                <div class="toRight">
+                    <State :propTask="propTask" />
+                    <Priority :propTask="propTask" />
+                    <button @click="removeTask" class="removeBtn">
+                        <img src="../assets/icons/remove.png" alt="Trash" />
+                    </button>
+                </div>
             </div>
         </template>
 
@@ -27,6 +29,8 @@
 
 <script>
 import AppAccordion from "./Accordion.vue";
+import State from "./tag/State.vue";
+import Priority from "./tag/Priority.vue";
 
 export default {
   name: "Task",
@@ -38,11 +42,15 @@ export default {
   },
   components: {
     AppAccordion,
+    State,
+    Priority,
   },
   methods:{
     removeTask(){
-        //suppresion de la tâche concernée
+        
+        window.localStorage.removeItem(this.propTask.name);
         console.log("click");
+        location.reload();
     }
   }
 };
@@ -69,6 +77,12 @@ export default {
 
 img{
     width : 40px;
+}
+
+.toRight{
+    display: flex;
+    gap : 10px;
+    align-items : center;
 }
 
 </style>

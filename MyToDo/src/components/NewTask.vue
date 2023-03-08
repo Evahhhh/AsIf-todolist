@@ -1,43 +1,43 @@
 <template>
     <div class="form">
-        <h1>Nouvelle tâche</h1>
+        <h1>New Task</h1>
         <form id="newTask" class="newTask" action="">
             <section>
-                <label for="name">Nom :</label><br>
-                <input type="text" name="Nom de la tache" placeholder="Vaisselle" id="name" required/><br>
+                <label for="name">Name :</label><br>
+                <input type="text" name="Nom de la tache" placeholder="Dishes" id="name" required/><br>
             </section>
             <section>
                 <label for="desc">Description :</label><br>
-                <input type="text" name="Description" placeholder="Faire la vaisselle" id="desc" required/><br>
+                <input type="text" name="Description" placeholder="Dishes a very bad joke" id="desc" required/><br>
             </section>
             <section>
-                <label for="startDate">Date de Début :</label><br>
+                <label for="startDate">Beginning :</label><br>
                 <input type="date" name="Date de début" placeholder="01/03/2023" id="startDate" required/><br>
             </section>
             <section>
-                <label for="endDate">Date de Fin :</label><br>
+                <label for="endDate">End :</label><br>
                 <input type="date" name="Date de fin" placeholder="01/03/2023" id="endDate" required/><br>
             </section>
             <section>
-                <label for="state">État de la tâche:</label><br>
+                <label for="state">Task State:</label><br>
                 <input list="states" name="state" id="state" required>
                 <datalist id="states">
-                    <option value="A faire"></option>
-                    <option value="En cours"></option>
-                    <option value="Terminé"></option>
+                    <option value="To Do"></option>
+                    <option value="Doing"></option>
+                    <option value="Done"></option>
                 </datalist><br>
             </section>
             <section>
-                <label for="prio">Priorité de la tache :</label><br>
+                <label for="prio">Priority :</label><br>
                 <input list="priorities" name="priority" id="prio" required><br>
                 <datalist id="priorities">
-                    <option value="Haute"></option>
-                    <option value="Moyenne"></option>
-                    <option value="Basse"></option>
+                    <option value="High"></option>
+                    <option value="Medium"></option>
+                    <option value="Low"></option>
                 </datalist>
             </section>
     
-            <button id="submitBtn" class="btn" type="button" name="send" @click="handleClick">Envoyer</button><br>
+            <button id="submitBtn" class="btn" type="button" name="send" @click="handleClick">Add Task</button><br>
 
         </form>
 
@@ -85,29 +85,56 @@ h1{
         methods: {
 
             handleClick(){
+                
+                const nomInput = document.querySelector('#name');
+                const descInput = document.querySelector('#desc');
+                const startDateInput = document.querySelector('#startDate');
+                const endDateInput = document.querySelector('#endDate');
+                const stateInput = document.querySelector('#state');
+                const prioInput = document.querySelector('#prio');
+                
+                if (!nomInput.value || !descInput.value || !startDateInput.value || !endDateInput.value || !stateInput.value || !prioInput.value) {
+                    alert('Veuillez remplir tous les champs !');
+                }else{
+                    
+                    if(startDateInput.value > endDateInput.value){
+                        alert('La date de début doit être antérieure à la date de fin !');
+                    }else{
 
-                var form = document.getElementById('newTask');
-                var button = document.getElementById('submitBtn');
+                        if(stateInput.value != "To Do" && stateInput.value != "Doing" && stateInput.value != "Done"){
+                            alert('Veuillez choisir un état valide !');
+                        }else{
 
-                console.log(form);
-                console.log(button);
+                            if(prioInput.value != "High" && prioInput.value != "Medium" && prioInput.value != "Low"){
+                                alert('Veuillez choisir une priorité valide !');
+                            }else{
+                                
+                                var form = document.getElementById('newTask');
+                                var button = document.getElementById('submitBtn');
+                                
+                                console.log(form);
+                                console.log(button);
+                                
+                                var name = document.getElementById('name').value;
+                                
+                                var infos = {
+                                    name : document.getElementById('name').value,
+                                    desc : document.getElementById('desc').value,
+                                    startDate : document.getElementById('startDate').value,
+                                    endDate : document.getElementById('endDate').value,
+                                    state : document.getElementById('state').value,
+                                    prio : document.getElementById('prio').value,
+                                }
+                                
+                                window.localStorage.setItem(name, JSON.stringify(infos));                    
+                                location.reload();
 
-                var name = document.getElementById('name').value;
+                            }
+                        }
 
-                var infos = {
-                    name : document.getElementById('name').value,
-                    desc : document.getElementById('desc').value,
-                    startDate : document.getElementById('startDate').value,
-                    endDate : document.getElementById('endDate').value,
-                    state : document.getElementById('state').value,
-                    prio : document.getElementById('prio').value,
+                    }
+                
                 }
-
-                window.localStorage.setItem(name, JSON.stringify(infos));
-
-                var message = "La tâche \'" + name + "\' a bien été ajoutée !";
-
-                alert(message);
                 
             },
         },
