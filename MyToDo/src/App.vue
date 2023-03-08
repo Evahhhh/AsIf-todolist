@@ -10,6 +10,9 @@
       <NewTask />
     </div>
     <div class="content">
+
+      <DisplayList />
+
     </div>
   </body>
 </template>
@@ -37,10 +40,12 @@
 
 <script>
 import NewTask from './components/NewTask.vue';
+import DisplayList from './components/DisplayList.vue';
 
 export default {
   components: {
     NewTask,
+    DisplayList,
   },
 };
 </script>

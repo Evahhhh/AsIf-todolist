@@ -1,13 +1,13 @@
 <template>
     <div class="form">
-        <h1 class="centered">Nouvelle tâche</h1>
-        <form id="newTask" action="task">
+        <h1>Nouvelle tâche</h1>
+        <form id="newTask" class="newTask" action="">
             <section>
                 <label for="name">Nom :</label><br>
                 <input type="text" name="Nom de la tache" placeholder="Vaisselle" id="name" required/><br>
             </section>
             <section>
-                <label for="desc">Description :</label>
+                <label for="desc">Description :</label><br>
                 <input type="text" name="Description" placeholder="Faire la vaisselle" id="desc" required/><br>
             </section>
             <section>
@@ -19,16 +19,16 @@
                 <input type="date" name="Date de fin" placeholder="01/03/2023" id="endDate" required/><br>
             </section>
             <section>
-                <label for="state">État de la tâche:</label>
+                <label for="state">État de la tâche:</label><br>
                 <input list="states" name="state" id="state" required>
                 <datalist id="states">
-                    <option value="To Do"></option>
-                    <option value="Doing"></option>
-                    <option value="Done"></option>
+                    <option value="A faire"></option>
+                    <option value="En cours"></option>
+                    <option value="Terminé"></option>
                 </datalist><br>
             </section>
             <section>
-                <label for="prio">Priorité de la tache :</label>
+                <label for="prio">Priorité de la tache :</label><br>
                 <input list="priorities" name="priority" id="prio" required><br>
                 <datalist id="priorities">
                     <option value="Haute"></option>
@@ -37,12 +37,10 @@
                 </datalist>
             </section>
     
-            <input class="btn centered" type="submit" name="send" value="Envoyer"><br>
+            <button id="submitBtn" class="btn" type="button" name="send" @click="handleClick">Envoyer</button><br>
 
-            <!-- mettre un @submit.prevent=method au type pour éviter de refresh la page 
-            method représente la méthode à coder où l'on récupérera les infos du form
-            -->
         </form>
+
     </div>
 </template>
 
@@ -53,14 +51,9 @@
     display: flex;
     flex-direction: column;
     padding: 10px;
+    width : 300px;
     border-radius : 5px;
 }
-
-/* .centered{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
 
 section{
     margin-top : 15px;
@@ -87,8 +80,37 @@ h1{
 </style>
 
 <script>
-    // import VCalendar from 'v-calendar';
+    export default{
+        name: "NewTask",
+        methods: {
 
-    // // Use plugin with defaults
-    // app.use(VCalendar, {})
+            handleClick(){
+
+                var form = document.getElementById('newTask');
+                var button = document.getElementById('submitBtn');
+
+                console.log(form);
+                console.log(button);
+
+                var name = document.getElementById('name').value;
+
+                var infos = {
+                    name : document.getElementById('name').value,
+                    desc : document.getElementById('desc').value,
+                    startDate : document.getElementById('startDate').value,
+                    endDate : document.getElementById('endDate').value,
+                    state : document.getElementById('state').value,
+                    prio : document.getElementById('prio').value,
+                }
+
+                window.localStorage.setItem(name, JSON.stringify(infos));
+
+                var message = "La tâche \'" + name + "\' a bien été ajoutée !";
+
+                alert(message);
+                
+            },
+        },
+    };
+    
 </script>
