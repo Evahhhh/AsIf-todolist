@@ -1,7 +1,7 @@
 <template>
 
   <div class="sort">
-      Hello world
+      <a v-for = "item in getSortFilter()" :key="item" @click="handleItemClick(item)" class="sort__item">{{item}}</a>
   </div>
 
 </template>
@@ -28,11 +28,19 @@
         
         if(item === 'Trier par date'){
 
+          console.log('Trier par date')
+
         }else if(item === 'Trier par état'){
+
+          console.log('Trier par état')
          
         }else if(item === 'Trier par nom'){
+
+          console.log('Trier par nom')
           
         }else if(item === 'Trier par priorité'){
+
+          console.log('Trier par priorité')
           
         }else{
             console.log('error')

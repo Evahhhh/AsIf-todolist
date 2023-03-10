@@ -1,4 +1,4 @@
-<template>
+ <template>
     <div class="form">
         <h1>New Task</h1>
         <form id="newTask" class="newTask" action="">
