@@ -35,4 +35,6 @@ Afin d'installer cette application sur votre machine en local il suffit de rnetr
 ## Lancer en production
 ```
 > npm run build
+> cd dist
+> http-server
 ```
