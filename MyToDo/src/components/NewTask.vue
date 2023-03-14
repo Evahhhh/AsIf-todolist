@@ -127,9 +127,6 @@ input{
                                 var form = document.getElementById('newTask');
                                 var button = document.getElementById('submitBtn');
                                 
-                                console.log(form);
-                                console.log(button);
-                                
                                 var name = document.getElementById('name').value;
                                 
                                 var infos = {

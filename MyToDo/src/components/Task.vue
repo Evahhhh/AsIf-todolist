@@ -54,6 +54,9 @@ export default {
     Priority,
   },
   methods:{
+    /**
+     * Delete the task
+     */
     removeTask(){
         window.localStorage.removeItem(this.propTask.name);
         location.reload();

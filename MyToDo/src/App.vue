@@ -151,6 +151,9 @@ export default {
     }
   },
   methods: {
+    /**
+     * Toggle the sidebar
+     */
     toggleSidebar() {
       this.showSidebar = !this.showSidebar;
 
@@ -160,6 +163,9 @@ export default {
         this.imgArrowSrc = arrowUp
       }
     },
+    /**
+     * Update when user change the screen's size
+     */
     updateDisplayData() {
       this.displayPC = window.innerWidth > 480;
     },

@@ -1,12 +1,13 @@
 <template>
 
   <div class="sort">
+    <!-- Si l'affichage se fait sur PC -->
     <div v-if="displayPC">
       <p>Sort by: </p>
     </div>
-      <button v-for = "item in getSortFilter()" :key="item" v-bind:id="item" @click="handleItemClick(item)" class="button" v-on:setSorter="setSorter(item)">
-        {{item}}
-      </button>
+    <button v-for = "item in getSortFilter()" :key="item" v-bind:id="item" @click="handleItemClick(item)" class="button" v-on:setSorter="setSorter(item)">
+      {{item}}
+    </button>
     
   </div>
 
@@ -26,76 +27,65 @@
       window.removeEventListener('resize', this.updateDisplayData);
     },
     setup(){
+      /**
+       * Manages the elements entered in the form and adds the task if they are good
+       */
       function handleItemClick(item) {
 
         document.getElementById(item).style.background="#35D99E";
         document.getElementById(item).style.color="white";
         document.getElementById(item).style.fontWeight = "bold";
-
       
-        if(item === 'Date'){
-          eventBus.emit('setSorter', 'date');
+        if(item === 'Start Date'){
+          eventBus.emit('setSorter', 'startDate');
           //désactiver les autres boutons
-          document.getElementById("Name").style.background="white";
-          document.getElementById("Priority").style.background="white";
-          document.getElementById("State").style.background="white";
+          this.manageStyle(["Name", "Priority", "State", "End Date"]);
 
-          document.getElementById("Name").style.color="black";
-          document.getElementById("Priority").style.color="black";
-          document.getElementById("State").style.color="black";
+        }else if(item === 'End Date'){
+          eventBus.emit('setSorter', 'endDate');
+          //désactiver les autres boutons
+          this.manageStyle(["Name", "Priority", "State", "Start Date"]);
 
-          document.getElementById("Name").style.fontWeight = "normal";
-          document.getElementById("Priority").style.fontWeight = "normal";
-          document.getElementById("State").style.fontWeight = "normal";
         }else if(item === 'Name'){
           eventBus.emit('setSorter', 'name'); 
           //désactiver les autres boutons
-          document.getElementById("Date").style.background="white";
-          document.getElementById("Priority").style.background="white";
-          document.getElementById("State").style.background="white";
+          this.manageStyle(["Start Date", "Priority", "State", "End Date"]);
 
-          document.getElementById("Date").style.color="black";
-          document.getElementById("Priority").style.color="black";
-          document.getElementById("State").style.color="black";
-
-          document.getElementById("Date").style.fontWeight = "normal";
-          document.getElementById("Priority").style.fontWeight = "normal";
-          document.getElementById("State").style.fontWeight = "normal";
         }else if(item === 'Priority'){
           eventBus.emit('setSorter', 'priority');
           //désactiver les autres boutons
-          document.getElementById("Name").style.background="white";
-          document.getElementById("Date").style.background="white";
-          document.getElementById("State").style.background="white";
+          this.manageStyle(["Name", "Start Date", "State", "End Date"]);
 
-          document.getElementById("Name").style.color="black";
-          document.getElementById("Date").style.color="black";
-          document.getElementById("State").style.color="black";
-
-          document.getElementById("Name").style.fontWeight = "normal";
-          document.getElementById("Date").style.fontWeight = "normal";
-          document.getElementById("State").style.fontWeight = "normal";
         }else if(item === 'State'){
           eventBus.emit('setSorter', 'state');
           //désactiver les autres boutons
-          document.getElementById("Name").style.background="white";
-          document.getElementById("Priority").style.background="white";
-          document.getElementById("Date").style.background="white";
+          this.manageStyle(["Name", "Priority", "Start Date", "End Date"]);
+          
+        }else if(item === 'End Date'){
+          eventBus.emit('setSorter', 'endDate');
+          //désactiver les autres boutons
+          this.manageStyle(["Name", "Priority", "State", "Start Date"]);
 
-          document.getElementById("Name").style.color="black";
-          document.getElementById("Priority").style.color="black";
-          document.getElementById("Date").style.color="black";
-
-          document.getElementById("Name").style.fontWeight = "normal";
-          document.getElementById("Priority").style.fontWeight = "normal";
-          document.getElementById("Date").style.fontWeight = "normal";
         }else{
-            console.log('error')
+            console.log('error when click on add button')
+        }
+      }
+
+      /**
+       * Changes other buttons style
+       */
+      function manageStyle(buttons){
+
+        for (var i = 0; i < buttons.length; i++){
+          document.getElementById(buttons[i]).style.background="white";
+          document.getElementById(buttons[i]).style.color="black";
+          document.getElementById(buttons[i]).style.fontWeight = "normal";
         }
       }
 
       return {
         handleItemClick,
+        manageStyle,
       }
     },
     components: {
@@ -109,22 +99,29 @@
       }
     },
     methods: {
+      /**
+       * Return filters
+       */
+      getSortFilter(){
 
-    getSortFilter(){
+          var sortFilter = [];
 
-        var sortFilter = [];
+          sortFilter.push('Name');
+          sortFilter.push('Start Date'); 
+          sortFilter.push('End Date')
+          sortFilter.push('State');
+          sortFilter.push('Priority');
 
-        sortFilter.push('Name');
-        sortFilter.push('Date'); 
-        sortFilter.push('State');
-        sortFilter.push('Priority');
+          return sortFilter;
 
-        return sortFilter;
+      },
 
-    },
-    updateDisplayData() {
-      this.displayPC = window.innerWidth > 480;
-    },
+      /**
+       * Manages the size of the user's screen in order to display the right elements live
+       */
+      updateDisplayData() {
+        this.displayPC = window.innerWidth > 480;
+      },
 
     },
 
@@ -152,6 +149,7 @@
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
     cursor: pointer;
     transition: box-shadow 0.3s ease-in-out;
+    white-space: nowrap;
   }
 
   button::before {
@@ -176,6 +174,8 @@
       position: fixed;
       bottom: 0;
       justify-content: center;
+      padding-left: 220px;
+      overflow-x: scroll;
     }
   }
   </style>

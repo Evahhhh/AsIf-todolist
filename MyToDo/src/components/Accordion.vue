@@ -22,6 +22,9 @@
       };
     },
     methods: {
+      /**
+       * Open or close the accordion
+       */
       toggleAccordion() {
         this.isOpen = !this.isOpen;
       },

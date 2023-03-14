@@ -14,6 +14,9 @@ export default{
         },
     },
     methods : {
+        /**
+         * Returns the color in HEX format corresponding to the tag value
+         */
         getColor(){
             if(this.propTask.state === 'To Do'){
                 return '#990D35';
