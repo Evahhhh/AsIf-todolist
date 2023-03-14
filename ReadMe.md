@@ -10,6 +10,7 @@ L'application vous permet de :
 - Les trier par :
     - Nom
     - Date de début
+    - Date de fin
     - État
     - Priorité
 - Ne pas faire les tâches ajoutées et triées
