@@ -5,7 +5,7 @@
 body{
     overflow-y: scroll;
     font-family: 'Nunito Sans', sans-serif;
-    font-size : 17px;
+    font-size : 13px;
 }
 
 body::-webkit-scrollbar{

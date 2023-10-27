@@ -7,7 +7,7 @@
         alt="Vue logo"
         class="logo"
         src="@/assets/img/logo2.png"
-        width="150"
+        width="120"
         />
         <NewTask />
       </div>
@@ -70,7 +70,7 @@
 
 .sidebar{
   background-color: #34DA9F;
-  flex-basis: 25%;
+  flex-basis: 35%;
   padding: 20px;
   display : flex;
   align-items: center;

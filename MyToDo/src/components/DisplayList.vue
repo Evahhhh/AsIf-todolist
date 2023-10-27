@@ -196,7 +196,11 @@ export default {
 }
 
 img{
-    height : 400px;
+    height : 300px;
+}
+
+h1{
+    font-size: 25px;
 }
 
 /* Téléphone */

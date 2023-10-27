@@ -4,20 +4,22 @@
         <form id="newTask" class="newTask" action="">
             <section>
                 <label for="name">Name :</label>
-                <input type="text" name="Nom de la tache" placeholder="Dishes" id="name" required/><br>
+                <input type="text" name="Nom de la tache" placeholder="Dishes" id="name" required/>
             </section>
             <section>
                 <label for="desc">Description :</label>
-                <input type="text" name="Description" placeholder="Dishes a very bad joke" id="desc" required/><br>
+                <input type="text" name="Description" placeholder="Dishes a very bad joke" id="desc" required/>
             </section>
-            <section>
-                <label for="startDate">Beginning :</label>
-                <input type="date" name="Date de début" placeholder="01/03/2023" id="startDate" required/><br>
-            </section>
-            <section>
-                <label for="endDate">End :</label>
-                <input type="date" name="Date de fin" placeholder="01/03/2023" id="endDate" required/><br>
-            </section>
+            <div class="doubleSection">
+                <section>
+                    <label for="startDate">Beginning :</label>
+                    <input type="date" name="Date de début" placeholder="01/03/2023" id="startDate" required/>
+                </section>
+                <section>
+                    <label for="endDate">End :</label>
+                    <input type="date" name="Date de fin" placeholder="01/03/2023" id="endDate" required/>
+                </section>
+            </div>
             <section>
                 <label for="state">Task State:</label>
                 <input list="states" name="state" id="state" required>
@@ -25,11 +27,11 @@
                     <option value="To Do"></option>
                     <option value="Doing"></option>
                     <option value="Done"></option>
-                </datalist><br>
+                </datalist>
             </section>
             <section>
                 <label for="prio">Priority :</label>
-                <input list="priorities" name="priority" id="prio" required><br>
+                <input list="priorities" name="priority" id="prio" required>
                 <datalist id="priorities">
                     <option value="High"></option>
                     <option value="Medium"></option>
@@ -61,6 +63,11 @@ section{
     margin-top : 15px;
 }
 
+.doubleSection{
+    display : flex;
+    justify-content : space-between;
+}
+
 .btn{
     border-radius : 5px;
     color : black;
@@ -69,7 +76,7 @@ section{
     width : 125px;
     padding : 10px 30px;
     cursor : pointer;
-    margin: 10px auto 20px;
+    margin: 20px auto 0px auto;
     display: block;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
     transition: box-shadow 0.3s ease-in-out;
